@@ -16,8 +16,8 @@ export default function Home() {
           Tools You Will Love
         </h1>
         <p className="text-lg sm:text-xl text-blue-700 font-medium text-center max-w-xl">
-          It's a toolbox you'll love, and whenever you open your laptop to get ready for work,<br className="hidden sm:inline" />
-          you'll always be reminded of <span className="font-bold text-teal-600">toolsyouwilllove.com</span>
+          It&#39;s a toolbox you&#39;ll love, and whenever you open your laptop to get ready for work,<br className="hidden sm:inline" />
+          you&#39;ll always be reminded of <span className="font-bold text-teal-600">toolsyouwilllove.com</span>
         </p>
       </header>
       <main className="flex-1 flex flex-col items-center justify-center w-full">
