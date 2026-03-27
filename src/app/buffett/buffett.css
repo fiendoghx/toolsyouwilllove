@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+:root {
+  /* 1. 核心电影风格配色 */
+  --background: #0a0a0a;
+  --foreground: #f5f0e8;
+  --gold: #d4a853;
+  --warm-white: #f5f0e8;
+  --bg-darker: #050505;
+
+  /* 2. 10个年代的色彩变量 - 用于营造不同历史节点的视觉氛围 */
+  --era-1940s: #2c1e14; /* 少年送报：复古棕 */
+  --era-1950s: #1a2525; /* 格雷厄姆时期：学术绿 */
+  --era-1956: #261e16;  /* 创业初期：深咖啡 */
+  --era-1960s: #2d2d2d; /* 工业转型：钢铁灰 */
+  --era-1970s: #3d2b1f; /* 喜诗糖果：暖褐色 */
+  --era-1991: #162447;  /* 金融危机：深邃蓝 */
+  --era-1999: #0f172a;  /* 科技泡沫：极客蓝 */
+  --era-2008: #171717;  /* 次贷危机：压抑灰 */
+  --era-2010s: #020617; /* 慈善传承：星空黑 */
+  --era-2020s: #000000; /* AI时代：极夜黑 */
+
+  /* 默认背景覆盖 */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+@theme inline {
+  --color-gold: #d4a853;
+  --color-warm: #f5f0e8;
+  --color-background: #0a0a0a;
+  --color-foreground: #f5f0e8;
+  --color-accent: #d4a853;
+  --color-accent-soft: #d4a8531f;
+  --color-muted-foreground: #9a917e;
+
+  /* 注册动画到 Tailwind 主题 */
+  --animate-typewriter: typewriter 2s steps(40, end);
+  --animate-golden-flash: golden-flash 1.5s ease-in-out;
+  --animate-fade-slide-in: fade-slide-in 0.8s ease-out forwards;
+  --animate-page-turn: page-turn 1s ease-in-out forwards;
+}
+
+/* 3. 核心动画帧定义 */
+
+/* 打字机效果：用于展示对白和独白 */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* 金色闪光：当玩家选择与巴菲特一致时触发 */
+@keyframes golden-flash {
+  0% { filter: brightness(1) contrast(1); }
+  50% { filter: brightness(1.5) contrast(1.2); text-shadow: 0 0 15px var(--gold); }
+  100% { filter: brightness(1) contrast(1); }
+}
+
+/* 节点过渡淡入：用于场景切换 */
+@keyframes fade-slide-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 页面翻报纸效果：用于结果揭晓时的转场 */
+@keyframes page-turn {
+  0% { 
+    transform: perspective(1200px) rotateY(0deg); 
+    transform-origin: left;
+    opacity: 1;
+  }
+  100% { 
+    transform: perspective(1200px) rotateY(-110deg); 
+    transform-origin: left;
+    opacity: 0;
+  }
+}
+
+/* 4. 基础全局样式增强 */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Georgia", "Times New Roman", serif; /* 营造历史纪录片感 */
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* 辅助类：电影质感遮罩 */
+.cinematic-vignette {
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+}
+
+/* 辅助类：金色渐变文字 */
+.text-gold-gradient {
+  background: linear-gradient(to bottom, #f5d17e, #d4a853);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 隐藏滚动条但保留功能 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 10px;
+}
+
+/* 面板卡片：半透明深底 + 微弱边框 */
+.panel {
+  background: linear-gradient(
+    180deg,
+    rgba(18, 18, 18, 0.92),
+    rgba(10, 10, 10, 0.96)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 金色框：加上金色上边光 */
+.gold-frame {
+  border-color: rgba(212, 168, 83, 0.22);
+  box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.12);
+}
+
+/* 所有可点击元素统一加过渡和手型光标 */
+button,
+a,
+[role="button"],
+input[type="submit"],
+label[for],
+select {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
